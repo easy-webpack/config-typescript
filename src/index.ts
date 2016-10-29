@@ -1,4 +1,4 @@
-import {WebpackConfig, get} from '@easy-webpack/core'
+import {WebpackConfigWithMetadata, get} from '@easy-webpack/core'
 import * as path from 'path'
 import {ForkCheckerPlugin, TsConfigPathsPlugin} from 'awesome-typescript-loader'
 
@@ -7,7 +7,7 @@ import {ForkCheckerPlugin, TsConfigPathsPlugin} from 'awesome-typescript-loader'
  * See: https://github.com/s-panferov/awesome-typescript-loader
  */
 export = function typescript({options = undefined, exclude = null} = {}) {
-  return function typescript(this: WebpackConfig): WebpackConfig {
+  return function typescript(this: WebpackConfigWithMetadata): WebpackConfigWithMetadata {
     const loader = {
       test: /\.tsx?$/,
       loader: 'awesome-typescript',
