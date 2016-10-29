@@ -20,7 +20,7 @@ export = function typescript({options = undefined, exclude = null} = {}) {
 
     return {
       resolve: {
-        extensions: get(this, 'resolve.extensions', ['', '.js']).concat(['.ts'])
+        extensions: get(this, 'resolve.extensions', ['.js']).concat(['.ts'])
       },
       module: {
         loaders: get(this, 'module.loaders', []).concat([loader])
