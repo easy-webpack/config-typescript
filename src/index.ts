@@ -10,7 +10,7 @@ export = function typescript({options = undefined, exclude = null} = {}) {
   return function typescript(this: WebpackConfigWithMetadata): WebpackConfigWithMetadata {
     const loader = {
       test: /\.tsx?$/,
-      loader: 'awesome-typescript',
+      loader: 'awesome-typescript-loader',
       exclude: exclude || (this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : [])
     } as any
 
