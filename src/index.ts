@@ -1,6 +1,6 @@
 import {WebpackConfigWithMetadata, get} from '@easy-webpack/core'
 import * as path from 'path'
-import {ForkCheckerPlugin, TsConfigPathsPlugin} from 'awesome-typescript-loader'
+import {TsConfigPathsPlugin} from 'awesome-typescript-loader'
 
 /**
  * Typescript loader support for .ts
@@ -11,12 +11,9 @@ export = function typescript({options = undefined, exclude = null} = {}) {
     const loader = {
       test: /\.tsx?$/,
       loader: 'awesome-typescript-loader',
-      exclude: exclude || (this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : [])
+      exclude: exclude || (this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : []),
+      options
     } as any
-
-    if (options) {
-      loader.query = options
-    }
 
     return {
       resolve: {
@@ -26,13 +23,6 @@ export = function typescript({options = undefined, exclude = null} = {}) {
         rules: get(this, 'module.rules', []).concat([loader])
       },
       plugins: [
-        /*
-        * Plugin: ForkCheckerPlugin
-        * Description: Do type checking in a separate process, so webpack don't need to wait.
-        *
-        * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
-        */
-        new ForkCheckerPlugin(),
         new TsConfigPathsPlugin(options)
       ].concat(get(this, 'plugins', []))
     }
