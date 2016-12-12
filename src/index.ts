@@ -1,6 +1,6 @@
 import {WebpackConfigWithMetadata, get} from '@easy-webpack/core'
 import * as path from 'path'
-import {TsConfigPathsPlugin} from 'awesome-typescript-loader'
+import {TsConfigPathsPlugin, CheckerPlugin} from 'awesome-typescript-loader'
 
 /**
  * Typescript loader support for .ts
@@ -23,7 +23,8 @@ export = function typescript({options = undefined, exclude = null} = {}) {
         rules: get(this, 'module.rules', []).concat([loader])
       },
       plugins: [
-        new TsConfigPathsPlugin(options)
+        new TsConfigPathsPlugin(options),
+        new CheckerPlugin()
       ].concat(get(this, 'plugins', []))
     }
   }
