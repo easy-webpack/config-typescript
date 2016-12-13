@@ -1,6 +1,6 @@
 import {WebpackConfigWithMetadata, get} from '@easy-webpack/core'
 import * as path from 'path'
-import {TsConfigPathsPlugin, CheckerPlugin} from 'awesome-typescript-loader'
+const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader') // does not complain about typings
 
 /**
  * Typescript loader support for .ts
