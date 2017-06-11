@@ -17,13 +17,13 @@ export = function typescript({options = undefined, exclude = null} = {}) {
 
     return {
       resolve: {
-        extensions: get(this, 'resolve.extensions', ['.js']).concat(['.tsx', '.ts'])
+        extensions: get(this, 'resolve.extensions', ['.js']).concat(['.tsx', '.ts']),
+        plugins: get(this, 'resolve.plugins', []).concat([new TsConfigPathsPlugin(options)])
       },
       module: {
         rules: get(this, 'module.rules', []).concat([loader])
       },
       plugins: [
-        new TsConfigPathsPlugin(options),
         new CheckerPlugin()
       ].concat(get(this, 'plugins', []))
     }
